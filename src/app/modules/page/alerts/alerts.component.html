@@ -1,0 +1,108 @@
+<div class="button mt-5">
+  <button type="button" class="btn me-4" (click)="showAlert('basic')">
+    Basic
+  </button>
+  <button
+    appButton
+    [variant]="'primary'"
+    [value]="'medium'"
+    (click)="showAlert('primary')"
+    class="me-4"
+  >
+    Primary
+  </button>
+  <button
+    appButton
+    [variant]="'secondary'"
+    [value]="'medium'"
+    (click)="showAlert('secondary')"
+    class="me-4"
+  >
+    Secondary
+  </button>
+  <button
+    type="button"
+    class="btn btn-success me-4"
+    (click)="showAlert('success')"
+  >
+    Success
+  </button>
+  <button type="button" class="btn btn-info me-4" (click)="showAlert('info')">
+    Info
+  </button>
+  <button
+    type="button"
+    class="btn btn-warning me-4"
+    (click)="showAlert('warning')"
+  >
+    Warning
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger me-4"
+    (click)="showAlert('danger')"
+  >
+    Danger
+  </button>
+  <button type="button" class="btn btn-dark me-4" (click)="showAlert('dark')">
+    Dark
+  </button>
+  <button type="button" class="btn btn-light me-4" (click)="showAlert('light')">
+    Light
+  </button>
+</div>
+
+<div class="alerts mt-5">
+  <div
+    class="alert alert-success"
+    role="alert"
+    *ngIf="currentAlert === 'basic'"
+  >
+    <strong>Success!</strong> Indicates a successful or positive action.
+  </div>
+  <div
+    class="alert alert-primary"
+    role="alert"
+    *ngIf="currentAlert === 'primary'"
+  >
+    <strong>Primary!</strong> This is a primary alert.
+  </div>
+  <div
+    class="alert alert-secondary"
+    role="alert"
+    *ngIf="currentAlert === 'secondary'"
+  >
+    <strong>Secondary!</strong> This is a secondary alert.
+  </div>
+  <div
+    class="alert alert-success"
+    role="alert"
+    *ngIf="currentAlert === 'success'"
+  >
+    <strong>Success!</strong> Indicates a successful or positive action.
+  </div>
+  <div class="alert alert-info" role="alert" *ngIf="currentAlert === 'info'">
+    <strong>Info!</strong> Indicates a neutral informative change.
+  </div>
+  <div
+    class="alert alert-warning"
+    role="alert"
+    *ngIf="currentAlert === 'warning'"
+  >
+    <strong>Warning!</strong> Be careful with this action.
+  </div>
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="currentAlert === 'danger'"
+  >
+    <strong>Danger!</strong> Indicates a dangerous or potentially negative
+    action.
+  </div>
+  <div class="alert alert-dark" role="alert" *ngIf="currentAlert === 'dark'">
+    <strong>Dark!</strong> This is a dark alert.
+  </div>
+  <div class="alert alert-light" role="alert" *ngIf="currentAlert === 'light'">
+    <strong>Light!</strong> This is a light alert.
+  </div>
+</div>

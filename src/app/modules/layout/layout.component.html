@@ -1,0 +1,28 @@
+<div class="d-flex">
+  <div class="sidebar">
+    <nav class="nav">
+      <ul>
+        @for (item of menuItems; track $index) {
+          <li
+            class="nav-link"
+            (click)="navigate(item.route)"
+            (keydown)="navigate(item.route)"
+            tabindex="0"
+          >
+            <i [class]="item.icon"></i>
+            @if (item.route) {
+              <a [routerLink]="item.route">{{ item.name }}</a>
+            }
+
+            @if (!item.route) {
+              <span>{{ item.name }}</span>
+            }
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="content">
+    <router-outlet class="me-5"></router-outlet>
+  </div>
+</div>

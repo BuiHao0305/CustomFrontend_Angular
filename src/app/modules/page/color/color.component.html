@@ -1,0 +1,13 @@
+<div class="color-table">
+  <a class="fs-2 mb-3" href="https://ingiacong.co/bang-code-mau/">Full color</a>
+  <div class="color-box-container">
+    <div
+      class="color-box"
+      *ngFor="let color of colors"
+      [style.background-color]="color"
+    >
+      <button (click)="copyToClipboard(color)" class="copy-btn">Copy</button>
+      <p>{{ color }}</p>
+    </div>
+  </div>
+</div>
