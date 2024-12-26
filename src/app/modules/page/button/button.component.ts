@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   Button,
   ButtonSize,
   ButtonVariant,
 } from '../../../shared/_component/button/button.directive';
 import { FormsModule } from '@angular/forms';
-import { CommonModule, NgTemplateOutlet } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-button',
@@ -21,6 +21,6 @@ export class ButtonComponent {
   readonly sizes = Object.keys(ButtonSize) as (keyof typeof ButtonSize)[];
   selectedVariant: keyof typeof ButtonVariant = 'primary';
   selectedSize: keyof typeof ButtonSize = 'large';
-  isDisabled: boolean = false;
-  isLoading: boolean = false;
+  isDisabled = false;
+  isLoading = false;
 }
