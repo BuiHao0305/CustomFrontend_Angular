@@ -16,6 +16,15 @@
   </select>
 </div>
 
+<div class="form-group1 mt-2">
+  <label for="sizeSelect">Select Color:</label>
+  <select id="sizeSelect" [(ngModel)]="selectedColor" class="form-control">
+    <option *ngFor="let color of colors" [value]="color">
+      {{ color | titlecase }}
+    </option>
+  </select>
+</div>
+
 <div class="form-check1 mt-3">
   <input
     id="disableCheckbox"

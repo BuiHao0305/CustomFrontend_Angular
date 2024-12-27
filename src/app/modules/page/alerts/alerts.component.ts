@@ -17,6 +17,6 @@ export class AlertsComponent {
     this.currentAlert = type;
     setTimeout(() => {
       this.currentAlert = null;
-    }, 3000);
+    }, 5000);
   }
 }

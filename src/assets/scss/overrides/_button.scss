@@ -46,6 +46,84 @@
     }
 }
 
+/* Định nghĩa màu sắc cho các nút */
+.button-blue {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+
+    &:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+}
+
+.button-yellow {
+    background-color: #ffc107;
+    color: white;
+    border: 1px solid #ffc107;
+
+    &:hover {
+        background-color: #e0a800;
+        border-color: #e0a800;
+    }
+}
+
+.button-black {
+    background-color: #343a40;
+    color: white;
+    border: 1px solid #343a40;
+
+    &:hover {
+        background-color: #23272b;
+        border-color: #23272b;
+    }
+}
+
+.button-white {
+    background-color: #ffffff;
+    color: #343a40;
+    border: 1px solid #ced4da;
+
+    &:hover {
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+    }
+}
+
+.button-orange {
+    background-color: #fd7e14;
+    color: white;
+    border: 1px solid #fd7e14;
+
+    &:hover {
+        background-color: #e4601f;
+        border-color: #e4601f;
+    }
+}
+
+.button-violet {
+    background-color: #6f42c1;
+    color: white;
+    border: 1px solid #6f42c1;
+
+    &:hover {
+        background-color: #5a32a3;
+        border-color: #5a32a3;
+    }
+}
+
+.button-green {
+    background-color: #28a745;
+    color: white;
+    border: 1px solid #28a745;
+
+    &:hover {
+        background-color: #218838;
+        border-color: #218838;
+    }
+}
+
 /* Định nghĩa kiểu cho các kích thước */
 .button-small {
     padding: 10px 5px;
@@ -66,20 +144,24 @@
 .button-disabled {
     pointer-events: none;
     opacity: 0.65;
-
 }
 
 .button-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    i {
-        animation: spin 1s linear infinite;
-    }
+    pointer-events: none;
 }
 
-/* Định nghĩa animation loading */
+.button-loading .button-text-content {
+    opacity: 0;
+}
+
+.button-loading .spinner-border {
+    position: absolute;
+    display: block;
+    gap: 1;
+    padding: 10px;
+    z-index: 10;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

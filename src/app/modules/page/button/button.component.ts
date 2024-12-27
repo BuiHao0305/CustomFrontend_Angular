@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   Button,
+  ButtonColor,
   ButtonSize,
   ButtonVariant,
 } from '../../../shared/_component/button/button.directive';
@@ -10,7 +11,6 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
   standalone: true,
   imports: [FormsModule, CommonModule, Button],
 })
@@ -19,8 +19,10 @@ export class ButtonComponent {
     ButtonVariant,
   ) as (keyof typeof ButtonVariant)[];
   readonly sizes = Object.keys(ButtonSize) as (keyof typeof ButtonSize)[];
+  readonly colors = Object.keys(ButtonColor) as (keyof typeof ButtonColor)[];
   selectedVariant: keyof typeof ButtonVariant = 'primary';
   selectedSize: keyof typeof ButtonSize = 'large';
-  isDisabled = false;
-  isLoading = false;
+  selectedColor: keyof typeof ButtonColor = 'green';
+  isDisabled: boolean = false;
+  isLoading: boolean = false;
 }

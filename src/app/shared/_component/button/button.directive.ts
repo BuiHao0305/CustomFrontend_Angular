@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, input, TemplateRef } from '@angular/core';
+import { Component, input, Input, TemplateRef } from '@angular/core';
 
 export const ButtonVariant = {
   primary: 'primary',
@@ -18,11 +18,22 @@ export const ButtonSize = {
 
 export type ButtonSize = (typeof ButtonSize)[keyof typeof ButtonSize];
 
+export const ButtonColor = {
+  blue: 'blue',
+  yellow: 'yellow',
+  black: 'black',
+  white: 'white',
+  orange: 'orange',
+  violet: 'violet',
+  green: 'green',
+};
+
+export type ButtonColor = (typeof ButtonColor)[keyof typeof ButtonColor];
+
 @Component({
+  standalone: true,
   selector: 'button[appButton]',
   templateUrl: './button.component.html',
-  standalone: true,
-  imports: [NgTemplateOutlet],
   host: {
     class: 'button',
     '[class.button-primary]': `variant()==="primary"`,
@@ -34,7 +45,15 @@ export type ButtonSize = (typeof ButtonSize)[keyof typeof ButtonSize];
     '[class.button-large]': `size()==="large"`,
     '[class.button-disabled]': 'disable()',
     '[class.button-loading]': 'loading()',
+    '[class.button-blue]': `color()==="blue"`,
+    '[class.button-yellow]': `color()==="yellow"`,
+    '[class.button-black]': `color()==="black"`,
+    '[class.button-white]': `color()==="white"`,
+    '[class.button-orange]': `color()==="orange"`,
+    '[class.button-violet]': `color()==="violet"`,
+    '[class.button-green]': `color()==="green"`,
   },
+  imports: [NgTemplateOutlet],
 })
 export class Button {
   readonly disable = input(false);
@@ -46,4 +65,5 @@ export class Button {
 
   readonly variant = input<ButtonVariant>(ButtonVariant.primary);
   readonly size = input<ButtonSize>(ButtonSize.medium);
+  readonly color = input<ButtonColor>(ButtonColor.blue);
 }

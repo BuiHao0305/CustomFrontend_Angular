@@ -1,5 +1,6 @@
 <div class="color-table">
   <a class="fs-2 mb-3" href="https://ingiacong.co/bang-code-mau/">Full color</a>
+  <h1 class="mb-3">Popular color palette</h1>
   <div class="color-box-container">
     <div
       class="color-box"
@@ -9,5 +10,27 @@
       <button (click)="copyToClipboard(color)" class="copy-btn">Copy</button>
       <p>{{ color }}</p>
     </div>
+  </div>
+  <h1 class="mb-5 mt-4">Full color palette in design</h1>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Color & Color Name</th>
+          <th>Decimal Code (R,G,B)</th>
+          <th>Hex Code #RRGGBB</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let color of colorData"
+          [style.background-color]="color.hex"
+        >
+          <td>{{ color.name }}</td>
+          <td>({{ color.rgb.join(", ") }})</td>
+          <td>{{ color.hex }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
