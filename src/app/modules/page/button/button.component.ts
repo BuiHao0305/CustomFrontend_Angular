@@ -15,14 +15,13 @@ import { CommonModule } from '@angular/common';
   imports: [FormsModule, CommonModule, Button],
 })
 export class ButtonComponent {
-  readonly variants = Object.keys(
-    ButtonVariant,
-  ) as (keyof typeof ButtonVariant)[];
-  readonly sizes = Object.keys(ButtonSize) as (keyof typeof ButtonSize)[];
-  readonly colors = Object.keys(ButtonColor) as (keyof typeof ButtonColor)[];
+  readonly variants = Object.values(ButtonVariant) as ButtonVariant[];
+  readonly sizes = Object.values(ButtonSize) as ButtonSize[];
+  readonly colors = Object.values(ButtonColor) as ButtonColor[];
   selectedVariant: keyof typeof ButtonVariant = 'primary';
-  selectedSize: keyof typeof ButtonSize = 'large';
-  selectedColor: keyof typeof ButtonColor = 'green';
+  selectedSize: keyof typeof ButtonSize = 'small';
+  selectedColor: keyof typeof ButtonColor = 'blue';
+
   isDisabled: boolean = false;
   isLoading: boolean = false;
 }

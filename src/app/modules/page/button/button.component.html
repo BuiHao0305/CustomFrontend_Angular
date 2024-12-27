@@ -16,9 +16,9 @@
   </select>
 </div>
 
-<div class="form-group1 mt-2">
-  <label for="sizeSelect">Select Color:</label>
-  <select id="sizeSelect" [(ngModel)]="selectedColor" class="form-control">
+<div class="form-group mt-2">
+  <label for="colorSelect">Select Color:</label>
+  <select id="colorSelect" [(ngModel)]="selectedColor" class="form-control">
     <option *ngFor="let color of colors" [value]="color">
       {{ color | titlecase }}
     </option>
@@ -50,8 +50,23 @@
   appButton
   [variant]="selectedVariant"
   [size]="selectedSize"
+  [color]="selectedColor"
   [disable]="isDisabled"
   [loading]="isLoading"
 >
   {{ selectedVariant | titlecase }} Button
 </button>
+<!-- <pre>
+  <code>
+button
+  class="mt-3"
+  appButton
+  [variant]="selectedVariant"
+  [size]="selectedSize"
+  [disable]="isDisabled"
+  [loading]="isLoading"
+
+  {{ selectedVariant | titlecase }} Button
+button
+  </code>
+</pre> -->
