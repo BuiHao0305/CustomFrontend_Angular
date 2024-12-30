@@ -1,50 +1,108 @@
-import { CommonModule } from '@angular/common';
-import { Component, forwardRef, OnInit } from '@angular/core';
 import {
-  ControlValueAccessor,
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
+  Directive,
+  ElementRef,
+  Renderer2,
+  HostListener,
+  Input,
+  OnInit,
+} from '@angular/core';
 
-@Component({
-  selector: 'app[Input]',
-  templateUrl: './input.component.html',
-  // styleUrls: ['./input.component.scss'],
+@Directive({
+  selector: '[appCustomInput]',
   standalone: true,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => Input),
-      multi: true,
-    },
-  ],
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
 })
-export class Input implements ControlValueAccessor {
-  constructor() {}
+export class InputDirective implements OnInit {
+  @Input() inputType = 'text';
+  @Input() iconStart = '';
+  @Input() iconEnd = '';
+  @Input() labelOptions = [];
 
-  public value = '';
-  public isDisabled = false;
+  private container: HTMLElement | undefined;
+  private startIcon: HTMLElement | undefined;
+  private endIcon: HTMLElement | undefined;
+  private selectLabel: HTMLSelectElement | undefined;
 
-  public changed: ((vlue: string) => void) | undefined;
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
-  public touched: (() => void) | undefined;
-
-  public onChange(event: Event): void {
-    const value: string = (<HTMLInputElement>event.target).value;
+  ngOnInit(): void {
+    this.createCustomInput();
   }
 
-  public writeValue(value: string): void {
-    this.value = value;
+  private createCustomInput() {
+    const inputElement = this.el.nativeElement;
+
+    // Tạo container bao ngoài
+    this.container = this.renderer.createElement('div');
+    this.renderer.setStyle(this.container, 'position', 'relative');
+    this.renderer.setStyle(this.container, 'display', 'flex');
+    this.renderer.setStyle(this.container, 'align-items', 'center');
+    this.renderer.setStyle(this.container, 'border', '1px solid #ccc');
+    this.renderer.setStyle(this.container, 'border-radius', '4px');
+    this.renderer.setStyle(this.container, 'padding', '4px 8px');
+    this.renderer.setStyle(this.container, 'gap', '8px');
+
+    // Đặt input vào container
+    this.renderer.appendChild(this.container, inputElement);
+    this.renderer.setStyle(inputElement, 'border', 'none');
+    this.renderer.setStyle(inputElement, 'outline', 'none');
+    this.renderer.setStyle(inputElement, 'flex', '1');
+    this.renderer.setStyle(inputElement, 'min-width', '0');
+    this.renderer.setAttribute(inputElement, 'type', this.inputType);
+
+    // Tạo iconStart nếu có
+    if (this.iconStart) {
+      this.startIcon = this.renderer.createElement('span');
+      this.renderer.setProperty(this.startIcon, 'innerHTML', this.iconStart);
+      this.renderer.setStyle(this.startIcon, 'font-size', '16px');
+      this.renderer.setStyle(this.startIcon, 'color', '#888');
+      this.renderer.appendChild(this.container, this.startIcon);
+    }
+
+    // Tạo iconEnd nếu có
+    if (this.iconEnd) {
+      this.endIcon = this.renderer.createElement('span');
+      this.renderer.setProperty(this.endIcon, 'innerHTML', this.iconEnd);
+      this.renderer.setStyle(this.endIcon, 'font-size', '16px');
+      this.renderer.setStyle(this.endIcon, 'color', '#888');
+      this.renderer.appendChild(this.container, this.endIcon);
+    }
+
+    // Tạo dropdown label nếu có
+    if (this.labelOptions.length > 0) {
+      this.selectLabel = this.renderer.createElement('select');
+      this.renderer.setStyle(this.selectLabel, 'border', 'none');
+      this.renderer.setStyle(this.selectLabel, 'outline', 'none');
+      this.renderer.setStyle(this.selectLabel, 'background', 'transparent');
+      this.renderer.setStyle(this.selectLabel, 'font-size', '14px');
+      this.renderer.setStyle(this.selectLabel, 'color', '#555');
+
+      // Thêm các option vào select
+      this.labelOptions.forEach((label) => {
+        const option = this.renderer.createElement('option');
+        this.renderer.setProperty(option, 'value', label);
+        this.renderer.setProperty(option, 'textContent', label);
+        this.renderer.appendChild(this.selectLabel, option);
+      });
+
+      this.renderer.appendChild(this.container, this.selectLabel);
+    }
+
+    // Thay thế input bằng container
+    const parent = inputElement.parentNode;
+    if (parent) {
+      this.renderer.insertBefore(parent, this.container, inputElement);
+      this.renderer.removeChild(parent, inputElement);
+    }
   }
-  public registerOnChange(fn: any): void {
-    this.changed = fn;
+
+  @HostListener('focus') onFocus() {
+    this.renderer.setStyle(this.container, 'border', '1px solid #007bff');
   }
-  public registerOnTouched(fn: any): void {
-    this.touched = fn;
-  }
-  public setDisabledState?(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
+
+  @HostListener('blur') onBlur() {
+    this.renderer.setStyle(this.container, 'border', '1px solid #ccc');
   }
 }
