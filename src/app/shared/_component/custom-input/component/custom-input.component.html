@@ -1,0 +1,46 @@
+<div [ngClass]="{ 'pe-none': isDisabled }">
+  <div class="d-flex align-items-center">
+    <!-- Hiển thị nhãn -->
+    <label class="form-label">
+      {{ labelText }}
+    </label>
+  </div>
+  <div
+    class="input-container d-flex align-items-center mb-2"
+    [ngClass]="{
+      'error-border':
+        control && control.invalid && control.touched && control.dirty,
+    }"
+    required
+  >
+    @if (startIcon()) {
+      <ng-container [ngTemplateOutlet]="startIcon()" />
+    }
+
+    <input
+      #input
+      class="input w-100"
+      [ngClass]="{ disabled: isDisabled }"
+      [placeholder]="placeholderText"
+      [type]="inputType"
+      (input)="onValueChange()"
+      (focusout)="onFocusOut()"
+    />
+    <!-- <span *ngIf="value" class="clear-icon" (click)="clearInput()">
+      <i class="bi bi-x-circle"></i>
+    </span> -->
+    @if (endIcon()) {
+      <ng-container [ngTemplateOutlet]="endIcon()" />
+    }
+    <label for="" class="form-label mt-1 ms-1">
+      {{ labelDomain || "" }}
+    </label>
+  </div>
+  <!-- Hiển thị lỗi -->
+  <span
+    [error]="control?.errors"
+    [params]="{ fieldName: labelText }"
+    [show]="control?.dirty || (control?.touched ?? false)"
+    class="text-danger"
+  ></span>
+</div>

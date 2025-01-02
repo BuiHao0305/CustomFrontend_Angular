@@ -1,0 +1,96 @@
+<form action="" [formGroup]="form">
+  <app-custom-input
+    [startIcon]="emailIconTemplate"
+    [endIcon]="successIconTemplate"
+    formControlName="email"
+    [labelText]="'Email'"
+    [inputType]="'text'"
+    [placeholderText]="'email'"
+    [labelDomain]="'@gmail.com'"
+    [(ngModel)]="emailValue"
+  >
+  </app-custom-input>
+  <p>Email: {{ emailValue }}</p>
+  <app-custom-input
+    [startIcon]="userIconTemplate"
+    [endIcon]="checkIconTemplate"
+    formControlName="username"
+    [placeholderText]="'text'"
+    [labelText]="'Text'"
+    [labelDomain]="''"
+    [inputType]="'text'"
+    [(ngModel)]="textValue"
+  >
+  </app-custom-input>
+  <p>Text: {{ textValue }}</p>
+
+  <app-custom-input
+    [startIcon]="iconWallet"
+    formControlName="number1"
+    [placeholderText]="'number'"
+    [labelText]="'Your Number'"
+    [inputType]="'number'"
+    [labelDomain]="''"
+    [(ngModel)]="number1Value"
+  >
+  </app-custom-input>
+  <p>Number1: {{ number1Value }}</p>
+  <app-custom-input
+    [endIcon]="iconGift"
+    formControlName="number2"
+    [placeholderText]="'number'"
+    [labelText]="'Your Number'"
+    [inputType]="'number'"
+    [labelDomain]="''"
+    [(ngModel)]="number2Value"
+  >
+  </app-custom-input>
+  <p>Number2: {{ number2Value }}</p>
+  <app-custom-input
+    [startIcon]="iconWallet"
+    [endIcon]="iconGift"
+    formControlName="number3"
+    [placeholderText]="'number'"
+    [labelText]="'Your Number'"
+    [inputType]="'number'"
+    [labelDomain]="''"
+    [(ngModel)]="number3Value"
+  >
+  </app-custom-input>
+  <p>Number3: {{ number3Value }}</p>
+  <app-custom-input
+    [startIcon]="iconWallet"
+    [endIcon]="iconGift"
+    formControlName="number4"
+    [placeholderText]="'number'"
+    [labelText]="'Your Number'"
+    [inputType]="'number'"
+    [labelDomain]="'@msb.com.vn'"
+    [(ngModel)]="number4Value"
+  >
+  </app-custom-input>
+  <p>Number4: {{ number4Value }}</p>
+</form>
+
+<ng-template #emailIconTemplate>
+  <i class="bi bi-envelope"></i>
+</ng-template>
+
+<ng-template #successIconTemplate>
+  <i class="bi bi-check-circle"></i>
+</ng-template>
+
+<ng-template #userIconTemplate>
+  <i class="bi bi-person"></i>
+</ng-template>
+
+<ng-template #checkIconTemplate>
+  <i class="bi bi-check-lg"></i>
+</ng-template>
+<ng-template #iconWallet>
+  <i class="bi bi-wallet"></i>
+</ng-template>
+
+<ng-template #iconGift>
+  <i class="bi bi-gift"></i>
+</ng-template>

@@ -24,4 +24,10 @@ export const MENU_ITEMS: MenuItems[] = [
     icon: 'bi bi-bell',
     route: '/alerts',
   },
+  {
+    id: 4,
+    name: 'Input',
+    icon: 'bi bi-bell',
+    route: '/input',
+  },
 ];

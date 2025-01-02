@@ -22,6 +22,6 @@ export class ButtonComponent {
   selectedSize: keyof typeof ButtonSize = 'small';
   selectedColor: keyof typeof ButtonColor = 'blue';
 
-  isDisabled: boolean = false;
-  isLoading: boolean = false;
+  isDisabled = false;
+  isLoading = false;
 }

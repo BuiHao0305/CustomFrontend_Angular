@@ -148,19 +148,13 @@
 
 .button-loading {
     pointer-events: none;
+    align-items: center;
 }
 
 .button-loading .button-text-content {
     opacity: 0;
 }
 
-.button-loading .spinner-border {
-    position: absolute;
-    display: block;
-    gap: 1;
-    padding: 10px;
-    z-index: 10;
-}
 
 @keyframes spin {
     0% {
