@@ -36,6 +36,7 @@ export class InputComponent {
         [Validators.required, Validators.email, Validators.minLength(2)],
       ],
       username: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', Validators.required, Validators.minLength(3)],
       number1: ['', [Validators.required, Validators.minLength(5)]],
       number2: ['', [Validators.required, Validators.minLength(5)]],
       number3: ['', [Validators.required, Validators.minLength(5)]],
@@ -44,4 +45,11 @@ export class InputComponent {
   }
 
   ngOnInit() {}
+
+  submit() {
+    if (this.form.valid) {
+      const formData = this.form.value;
+      console.log(formData);
+    }
+  }
 }

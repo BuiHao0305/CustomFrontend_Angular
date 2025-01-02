@@ -27,12 +27,12 @@ export class CustomInputComponent implements ControlValueAccessor {
    * Label text
    */
   @Input() labelText = '';
-
+  @Input() id: InputType = '';
   /**
    * Input has different types - text, email, number
    */
-  @Input() inputType: InputType = 'text';
-  @Input() labelDomain: LabelDomain = '@gmail.com';
+  @Input() inputType: InputType = '';
+  @Input() labelDomain: LabelDomain = '';
   /**
    * Placeholder text
    */

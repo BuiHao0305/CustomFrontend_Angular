@@ -4,13 +4,23 @@
     [endIcon]="successIconTemplate"
     formControlName="email"
     [labelText]="'Email'"
-    [inputType]="'text'"
+    [id]="'email'"
+    [inputType]="'email'"
     [placeholderText]="'email'"
     [labelDomain]="'@gmail.com'"
     [(ngModel)]="emailValue"
   >
   </app-custom-input>
   <p>Email: {{ emailValue }}</p>
+
+  <app-custom-input
+    formControlName="password"
+    [placeholderText]="'password'"
+    [labelText]="'Password'"
+    [labelDomain]="''"
+    [inputType]="'password'"
+  >
+  </app-custom-input>
   <app-custom-input
     [startIcon]="userIconTemplate"
     [endIcon]="checkIconTemplate"
@@ -71,7 +81,7 @@
   </app-custom-input>
   <p>Number4: {{ number4Value }}</p>
 </form>
-
+<!-- <button class="btn btn-primary" (click)="submit()">Submit</button> -->
 <ng-template #emailIconTemplate>
   <i class="bi bi-envelope"></i>
 </ng-template>

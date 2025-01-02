@@ -5,7 +5,7 @@
       {{ labelText }}
     </label>
   </div>
-  <div
+  <label
     class="input-container d-flex align-items-center mb-2"
     [ngClass]="{
       'error-border':
@@ -23,7 +23,10 @@
       [ngClass]="{ disabled: isDisabled }"
       [placeholder]="placeholderText"
       [type]="inputType"
+      [id]="inputType"
+      [autocomplete]="inputType === 'email' ? 'email' : 'on'"
       (input)="onValueChange()"
+      autocomplete="on"
       (focusout)="onFocusOut()"
     />
     <!-- <span *ngIf="value" class="clear-icon" (click)="clearInput()">
@@ -35,7 +38,7 @@
     <label for="" class="form-label mt-1 ms-1">
       {{ labelDomain || "" }}
     </label>
-  </div>
+  </label>
   <!-- Hiển thị lỗi -->
   <span
     [error]="control?.errors"
