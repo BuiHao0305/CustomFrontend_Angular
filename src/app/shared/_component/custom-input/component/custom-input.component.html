@@ -24,13 +24,15 @@
       [placeholder]="placeholderText"
       [type]="inputType"
       [id]="inputType"
-      (input)="onValueChange()"
+      [(ngModel)]="value"
+      (input)="onValueChange($event)"
+      (keydown)="onValueChange($event)"
       autocomplete="on"
       (focusout)="onFocusOut()"
     />
-    <!-- <span *ngIf="value" class="clear-icon" (click)="clearInput()">
+    <span class="clear-icon me-2" (click)="clearInput()">
       <i class="bi bi-x-circle"></i>
-    </span> -->
+    </span>
     @if (endIcon()) {
       <ng-container [ngTemplateOutlet]="endIcon()" />
     }

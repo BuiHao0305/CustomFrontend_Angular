@@ -80,6 +80,17 @@
   >
   </app-custom-input>
   <p>Number4: {{ number4Value }}</p>
+
+  <app-custom-input
+    formControlName="date"
+    [placeholderText]="'date'"
+    [labelText]="'Your Date'"
+    [inputType]="'date'"
+    [labelDomain]="''"
+    [(ngModel)]="dateValue"
+  >
+  </app-custom-input>
+  <p>Date: {{ dateValue }}</p>
 </form>
 <!-- <button class="btn btn-primary" (click)="submit()">Submit</button> -->
 <ng-template #emailIconTemplate>

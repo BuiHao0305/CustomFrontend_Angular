@@ -27,7 +27,7 @@ export const MENU_ITEMS: MenuItems[] = [
   {
     id: 4,
     name: 'Input',
-    icon: 'bi bi-bell',
+    icon: 'bi bi-menu-button-wide-fill',
     route: '/input',
   },
 ];

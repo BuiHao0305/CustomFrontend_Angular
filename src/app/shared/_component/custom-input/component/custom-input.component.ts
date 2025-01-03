@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NgControl } from '@angular/forms';
 import { InputType } from '../type/type.input';
-import { LabelDomain } from '../type/tyoe.label';
+import { LabelDomain } from '../type/type.label';
 import { AppErrorDirective } from '../../../../core/directive/error.directive';
 import { CommonModule } from '@angular/common';
 
@@ -74,6 +74,8 @@ export class CustomInputComponent implements ControlValueAccessor {
   }
   clearInput() {
     this.value = '';
+    this.onChange(this.value);
+    this.onTouched();
   }
   writeValue(obj: any): void {
     if (this.input) {
@@ -103,12 +105,15 @@ export class CustomInputComponent implements ControlValueAccessor {
   /**
    * Fired when control value changed
    */
-  public onValueChange(): void {
+
+  public onValueChange(event: Event): void {
     if (!this.input) {
       return;
     }
     this.value = this.input.nativeElement.value;
     this.onChange(this.value);
+    const inputElement = event.target as HTMLInputElement;
+    this.value = inputElement.value;
   }
 
   /**
