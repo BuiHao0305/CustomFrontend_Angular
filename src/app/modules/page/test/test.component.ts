@@ -7,7 +7,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { OtpService } from '../../../core/service/otp.service';
+
 import { CustomCountdownComponent } from '../../../shared/_component/custom-countdown/custom-countdown.component';
 import { Custom_datepickerComponent } from '../../../shared/_component/datepicker/component/custom_datepicker/custom_datepicker.component';
 
@@ -23,20 +23,20 @@ import { Custom_datepickerComponent } from '../../../shared/_component/datepicke
   ],
   standalone: true,
 })
-export class TestComponent implements OnInit, AfterViewInit {
+export class TestComponent implements OnInit {
   countdowntime = 0;
-  constructor(private otpService: OtpService) {}
+  // constructor(private otpService: OtpService) {}
 
   @ViewChildren(CustomCountdownComponent)
   timers: QueryList<CustomCountdownComponent> = new QueryList<any>();
 
   ngOnInit(): void {}
-  ngAfterViewInit(): void {
-    this.otpService.getOtp().subscribe((response) => {
-      this.countdowntime = response.countdowntime;
-    });
-    this.start();
-  }
+  // ngAfterViewInit(): void {
+  //   this.otpService.getOtp().subscribe((response) => {
+  //     this.countdowntime = response.countdowntime;
+  //   });
+  //   this.start();
+  // }
 
   start() {
     this.timers.toArray().forEach((timer) => timer.start());

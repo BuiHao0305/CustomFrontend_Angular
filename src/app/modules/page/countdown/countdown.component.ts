@@ -7,7 +7,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { OtpService } from '../../../core/service/otp.service';
+
 import {
   CountdownEvent,
   CustomCountdownComponent,
