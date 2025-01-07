@@ -30,4 +30,16 @@ export const MENU_ITEMS: MenuItems[] = [
     icon: 'bi bi-menu-button-wide-fill',
     route: '/input',
   },
+  {
+    id: 4,
+    name: 'CountDown',
+    icon: 'bi bi-hourglass-bottom',
+    route: '/countdown',
+  },
+  {
+    id: 4,
+    name: 'CountDown',
+    icon: 'bi bi-hourglass-bottom',
+    route: '/test',
+  },
 ];

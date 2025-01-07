@@ -1,0 +1,38 @@
+<div class="container">
+  <div id="calendar" class="calendar">
+    <div class="calendar-header">
+      <span class="month-display">{{ currentMonthDisplay }}</span>
+      <ng-container *ngTemplateOutlet="iconCalender"></ng-container>
+      <button class="nav-button" (click)="navigateMonth(-1)">
+        <ng-container *ngTemplateOutlet="iconLeft"></ng-container>
+      </button>
+      <button class="nav-button" (click)="navigateMonth(1)">
+        <ng-container *ngTemplateOutlet="iconRight"></ng-container>
+      </button>
+    </div>
+    <div class="calendar-body">
+      <div class="calendar-days">
+        @for (day of calendarDays; track $index) {
+          <span>{{ day }}</span>
+        }
+      </div>
+      <div id="calendar-dates" class="calendar-dates">
+        @for (date of calendarDates; track $index) {
+          <span (click)="selectDate(date)">
+            {{ date }}
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #iconLeft>
+  <i class="bi bi-chevron-left"></i>
+</ng-template>
+<ng-template #iconRight>
+  <i class="bi bi-chevron-right"></i>
+</ng-template>
+<ng-template #iconCalender>
+  <i class="bi bi-calendar4-week"></i>
+</ng-template>
