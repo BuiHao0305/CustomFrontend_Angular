@@ -1,0 +1,28 @@
+.multi-select {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.options {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.selected-label {
+  margin-top: 10px;
+}
+
+.remove {
+  color: red;
+  cursor: pointer;
+  margin-left: 5px;
+}

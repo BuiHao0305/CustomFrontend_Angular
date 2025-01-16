@@ -1,0 +1,25 @@
+<!-- Popup -->
+<div *ngIf="isPopupOpen" class="popup-overlay">
+  <div class="popup">
+    <div class="popup-header">
+      <h3>Chọn Tháng và Năm</h3>
+      <button (click)="closePopup()">✖</button>
+    </div>
+    <div class="popup-body">
+      <label for="month-select">Tháng:</label>
+      <select id="month-select" [(ngModel)]="selectedMonth">
+        <option *ngFor="let month of months; let i = index" [value]="i">
+          {{ month }}
+        </option>
+      </select>
+      <label for="year-select">Năm:</label>
+      <select id="year-select" [(ngModel)]="selectedYear">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+    </div>
+    <div class="popup-footer">
+      <button (click)="applySelection()">Áp dụng</button>
+      <button (click)="closePopup()">Đóng</button>
+    </div>
+  </div>
+</div>

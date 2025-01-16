@@ -6,6 +6,7 @@ import { AlertsComponent } from '../page/alerts/alerts.component';
 import { InputComponent } from '../page/input/input.component';
 import { CountdownComponent } from '../page/countdown/countdown.component';
 import { TestComponent } from '../page/test/test.component';
+import {UseSelectorComponent} from "../page/use-selector/use-selector.component";
 
 export const layoutRoutes: Route[] = [
   {
@@ -33,9 +34,13 @@ export const layoutRoutes: Route[] = [
         component: CountdownComponent,
       },
       {
-        path: 'test',
+        path: 'Calender',
         component: TestComponent,
       },
+      {
+        path: 'select',
+        component:UseSelectorComponent
+      }
     ],
   },
 ];

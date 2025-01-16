@@ -15,6 +15,7 @@ body {
 }
 
 .calendar {
+
     width: 300px;
     background-color: white;
     border-radius: 1px;
@@ -27,12 +28,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px 20px 10px;
+    padding: 10px 0px 20px 0px;
     background-color: white;
     color: black;
     font-size: 20px;
     font-weight: bold;
     border-bottom: 1px solid #eeeeee;
+}
+
+.button-calendar {
+    position: relative;
+    transform: translateY(-2.8px);
 }
 
 .calendar-icon {
@@ -56,13 +62,13 @@ body {
 
 .calendar-body {
     padding: 20px 0 10px 0px;
+
 }
 
 .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
-    font-weight: bold;
     margin-bottom: 10px;
 }
 
@@ -71,9 +77,14 @@ body {
 }
 
 .calendar-dates {
+
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
+}
+
+.calendar-body1 {
+    position: relative;
 }
 
 .calendar-days span {
@@ -122,4 +133,97 @@ body {
 
 .calendar-dates span.selected {
     color: rgb(244, 100, 12);
+}
+
+.prev-month-class,
+.next-month-class {
+    opacity: 0.3;
+}
+
+/* Popup Overlay */
+/* Overlay toàn màn hình */
+.popup-overlay {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
+}
+
+.popup-calendar {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    width: 100%;
+
+    height: 100%;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.popup-header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.popup-header button {
+    background: none;
+    border: none;
+    color: #007bff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Danh sách các năm */
+.popup-years {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.popup-years button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.popup-years button.active {
+    background: #007bff;
+    color: white;
+}
+
+/* Grid các tháng */
+.popup-months .month-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.popup-months button {
+    padding: 10px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.popup-months button.active {
+    background: #007bff;
+    color: white;
 }

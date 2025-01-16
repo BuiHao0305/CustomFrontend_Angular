@@ -38,8 +38,14 @@ export const MENU_ITEMS: MenuItems[] = [
   },
   {
     id: 4,
-    name: 'CountDown',
-    icon: 'bi bi-hourglass-bottom',
-    route: '/test',
+    name: 'Calender',
+    icon: 'bi bi-calendar-week',
+    route: '/Calender',
   },
+  {
+    id:5,
+    name:'Select',
+    icon: 'bi bi-menu-button-wide-fill',
+    route: '/select',
+  }
 ];

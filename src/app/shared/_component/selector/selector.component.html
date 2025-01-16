@@ -1,0 +1,29 @@
+<div class="multi-select">
+  <div class="header">
+    <input type="checkbox" id="select-all" (change)="toggleCheckAll($event)" />
+    <label for="select-all">Select All</label>
+  </div>
+
+  <div class="options">
+    <div *ngFor="let item of optionItems; let i = index">
+      <input
+        type="checkbox"
+        id="option-{{ i }}"
+        [value]="item.id"
+        [checked]="selectedValues.includes(item.id)"
+        (change)="onSelectionChange($event, item)"
+      />
+      <label for="option-{{ i }}">{{ item.name }}</label>
+    </div>
+  </div>
+
+  <div class="selected-label">
+    <span *ngFor="let item of selectedOptionItems; let idx = index">
+      {{ item.name }}
+      <span class="remove" (click)="removeItem(item)">×</span>
+      <ng-container *ngIf="idx < selectedOptionItems.length - 1"
+        >,
+      </ng-container>
+    </span>
+  </div>
+</div>

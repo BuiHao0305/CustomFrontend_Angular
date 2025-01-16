@@ -1,8 +1,13 @@
 <div class="container">
+  <!-- Calendar -->
   <div id="calendar" class="calendar">
     <div class="calendar-header">
-      <span class="month-display">{{ currentMonthDisplay }}</span>
-      <ng-container *ngTemplateOutlet="iconCalender"></ng-container>
+      <div class="calendar-header-title">
+        <span class="month-display">{{ currentMonthDisplay }}</span>
+        <button class="nav-button button-calendar" (click)="openPopup()">
+          <ng-container *ngTemplateOutlet="iconCalender"></ng-container>
+        </button>
+      </div>
       <button class="nav-button" (click)="navigateMonth(-1)">
         <ng-container *ngTemplateOutlet="iconLeft"></ng-container>
       </button>
@@ -11,28 +16,75 @@
       </button>
     </div>
     <div class="calendar-body">
-      <div class="calendar-days">
-        @for (day of calendarDays; track $index) {
-          <span>{{ day }}</span>
-        }
-      </div>
-      <div id="calendar-dates" class="calendar-dates">
-        @for (date of calendarDates; track $index) {
-          <span (click)="selectDate(date)">
+      <div class="calender-body1">
+        <div class="calendar-days">
+          @for (day of calendarDays; track $index) {
+            <span>{{ day }}</span>
+          }
+        </div>
+        <!-- Hiển thị calendar-dates nếu popup đóng -->
+        <div id="calendar-dates" class="calendar-dates" *ngIf="!isPopupOpen">
+          <span
+            *ngFor="let date of calendarDates; let index = index"
+            [class.selected]="isSelected(date, index)"
+            [class.prev-month]="index < firstDayOfMonthIndex"
+            [class.next-month]="index >= firstDayOfMonthIndex + daysInMonth"
+            [ngClass]="{
+              'prev-month-class': index < firstDayOfMonthIndex,
+              'next-month-class': index >= firstDayOfMonthIndex + daysInMonth,
+            }"
+            (click)="handleDateClick(date, index)"
+          >
             {{ date }}
           </span>
-        }
+        </div>
+      </div>
+      <div class="popup-overlay" *ngIf="isPopupOpen">
+        <div class="popup-calendar">
+          <!-- Nếu chưa chọn năm, hiển thị danh sách năm -->
+          <div *ngIf="!isYearSelected" class="popup-years">
+            <h3>Chọn năm</h3>
+            <button
+              *ngFor="let year of years"
+              [class.active]="year === selectedYear"
+              (click)="selectYear(year)"
+            >
+              {{ year }}
+            </button>
+          </div>
+
+          <!-- Nếu đã chọn năm, hiển thị 12 tháng -->
+          <div *ngIf="isYearSelected" class="popup-months">
+            <div class="popup-header">
+              <h3>Năm {{ selectedYear }}</h3>
+              <button (click)="resetSelection()">Quay lại</button>
+            </div>
+            <div class="month-grid">
+              <button
+                *ngFor="let month of months; let i = index"
+                [class.active]="i === selectedMonth"
+                (click)="selectMonth(i)"
+              >
+                {{ month }}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Popup -->
 </div>
 
 <ng-template #iconLeft>
-  <i class="bi bi-chevron-left"></i>
+  <img src="/assets/scss/icon/back-icon.svg" alt="" />
 </ng-template>
 <ng-template #iconRight>
-  <i class="bi bi-chevron-right"></i>
+  <img src="/assets/scss/icon/next-icon.svg" alt="" />
 </ng-template>
 <ng-template #iconCalender>
-  <i class="bi bi-calendar4-week"></i>
+  <img src="/assets/scss/icon/calendar-icon.svg" alt="" />
 </ng-template>
+
+<!-- Popup -->
