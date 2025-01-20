@@ -1,29 +1,31 @@
-<div class="multi-select">
-  <div class="header">
-    <input type="checkbox" id="select-all" (change)="toggleCheckAll($event)" />
-    <label for="select-all">Select All</label>
+<div class="dropdown-container">
+  <div class="dropdown-header" (click)="toggleDropdown()">
+    <span>
+      {{
+        selectedValues.length
+          ? selectedValues.length + " selected"
+          : "Select items"
+      }}
+    </span>
+    <span class="arrow">&#9662;</span>
   </div>
-
-  <div class="options">
-    <div *ngFor="let item of optionItems; let i = index">
+  <div #dropdown class="dropdown-menu">
+    <div class="dropdown-item">
       <input
         type="checkbox"
-        id="option-{{ i }}"
+        (change)="toggleCheckAll($event)"
+        [checked]="selectedValues.length === optionItems.length"
+      />
+      Select All
+    </div>
+    <div class="dropdown-item" *ngFor="let item of optionItems">
+      <input
+        type="checkbox"
         [value]="item.id"
         [checked]="selectedValues.includes(item.id)"
-        (change)="onSelectionChange($event, item)"
+        (click)="$event.stopPropagation()"
       />
-      <label for="option-{{ i }}">{{ item.name }}</label>
+      <span (click)="$event.stopPropagation()"> {{ item.name }}</span>
     </div>
-  </div>
-
-  <div class="selected-label">
-    <span *ngFor="let item of selectedOptionItems; let idx = index">
-      {{ item.name }}
-      <span class="remove" (click)="removeItem(item)">×</span>
-      <ng-container *ngIf="idx < selectedOptionItems.length - 1"
-        >,
-      </ng-container>
-    </span>
   </div>
 </div>

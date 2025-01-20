@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
 import { SelectorComponent } from '../../../shared/_component/selector/selector.component';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+export interface Options {
+  id: number;
+  name: string;
+}
 @Component({
   selector: 'app-use-selector',
   standalone: true,
@@ -10,10 +18,17 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './use-selector.component.scss',
 })
 export class UseSelectorComponent {
-  items = [
+  form: FormGroup;
+  options: Options[] = [
     { id: 1, name: 'Option 1' },
     { id: 2, name: 'Option 2' },
     { id: 3, name: 'Option 3' },
+    { id: 4, name: 'Option 4' },
   ];
-  multiSelectControl = new FormControl([]);
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      selectedItems: [[]],
+    });
+  }
 }

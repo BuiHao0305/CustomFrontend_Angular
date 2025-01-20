@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, Self, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Self,
+  ViewChild,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
@@ -15,9 +22,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './selector.component.scss',
 })
 export class SelectorComponent implements OnInit, ControlValueAccessor {
-  @Input() optionItems: any[] = [];
+  disabled = false;
   selectedValues: any[] = [];
-  disabled: boolean = false;
+
+  @Input() optionItems: any[] = [];
+  @ViewChild('dropdown') dropdown!: ElementRef;
+
+  onChange = (value: any) => {};
+  onTouched = () => {};
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
@@ -25,44 +37,34 @@ export class SelectorComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {}
 
-  // Toggle all items
-  toggleCheckAll(event: Event): void {
+  toggleDropdown() {
+    const dropdown = this.dropdown.nativeElement;
+    dropdown.style.display =
+      dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  toggleCheckAll(event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
     if (isChecked) {
       this.selectedValues = this.optionItems.map((item) => item.id);
     } else {
       this.selectedValues = [];
     }
-    this.notifyChanges();
+    this.onChange(this.selectedValues);
   }
 
-  // Handle individual selection changes
-  onSelectionChange(event: Event, item: any): void {
+  toggleItemSelection(id: any, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
     if (isChecked) {
-      this.selectedValues.push(item.id);
+      this.selectedValues.push(id);
     } else {
-      this.selectedValues = this.selectedValues.filter((id) => id !== item.id);
+      this.selectedValues = this.selectedValues.filter((value) => value !== id);
     }
-    this.notifyChanges();
+    this.onChange(this.selectedValues);
   }
 
-  // Remove an item from selection
-  removeItem(item: any): void {
-    this.selectedValues = this.selectedValues.filter((id) => id !== item.id);
-    this.notifyChanges();
-  }
-
-  // Get selected options (for display purposes)
-  get selectedOptionItems() {
-    return this.optionItems.filter((item) =>
-      this.selectedValues.includes(item.id),
-    );
-  }
-
-  // ControlValueAccessor methods
   writeValue(obj: any): void {
-    this.selectedValues = Array.isArray(obj) ? obj : [];
+    this.selectedValues = obj || [];
   }
 
   registerOnChange(fn: any): void {
@@ -75,14 +77,5 @@ export class SelectorComponent implements OnInit, ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
-  }
-
-  // Internal methods for ControlValueAccessor
-  private onChange = (_: any) => {};
-  private onTouched = () => {};
-
-  private notifyChanges(): void {
-    this.onChange([...this.selectedValues]);
-    this.onTouched();
   }
 }

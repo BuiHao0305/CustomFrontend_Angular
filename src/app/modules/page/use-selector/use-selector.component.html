@@ -1,2 +1,11 @@
-<app-selector [formControl]="multiSelectControl" [optionItems]="items">
-</app-selector>
+<h1>Multi-Select Dropdown</h1>
+<form [formGroup]="form">
+  <app-selector
+    formControlName="selectedItems"
+    [optionItems]="options"
+  ></app-selector>
+</form>
+
+<!-- @for (option of options; track $index) {
+  <p>Select {{ option.name }}</p>
+} -->
